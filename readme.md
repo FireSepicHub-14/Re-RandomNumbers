@@ -1,4 +1,4 @@
-![logo](images/Re-RandomNumbers.png)
+![logo](images/Re-RandomNumbers-2.png)
 # Re-RandomNumbers
 RandomNumbersのリメイク(後継モデル)です
 その他説明等はアプデごとに書きたいと思います
