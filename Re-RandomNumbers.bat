@@ -54,9 +54,13 @@ if "%INPUT%"=="exit" (
     goto :LOOP
 
 
+) else if "%INPUT%"=="floop" (
+    @REM FastLoop
+    goto :FLOOP
+
+
 ) else if "%INPUT%"=="info" (
     @REM Infomation
-    mode 120,38
     goto :INFO
 
 
@@ -232,9 +236,13 @@ if "%INPUT%"=="exit" (
     goto :LOOP
 
 
+) else if "%INPUT%"=="floop" (
+    @REM FastLoop
+    goto :FLOOP
+
+
 ) else if "%INPUT%"=="info" (
     @REM Infomation
-    mode 120,38
     goto :INFO
 
 
@@ -267,9 +275,13 @@ if "%INPUT%"=="exit" (
     goto :LOOP
 
 
+) else if "%INPUT%"=="floop" (
+    @REM FastLoop
+    goto :FLOOP
+
+
 ) else if "%INPUT%"=="info" (
     @REM Infomation
-    mode 120,38
     goto :INFO
 
 
@@ -325,6 +337,7 @@ goto :CORE2
 
 
 :INFO
+chcp 65001
 cls
 echo   ############################################
 echo   #                                          #
@@ -340,11 +353,166 @@ echo    ^| 作成時間:  推定 3 ～ 8時間  (実質二日間)
 echo    ^| 作成者:    Sou/Sephy
 echo;
 echo;
-echo    [メニュー]                                      [説明]
-echo   --+-----------------------                     --+-----------------------
-echo     ^| 終了       = exit                           ^|
-echo     ^| 生成       = create                         ^|
-echo     ^| Advanced   = adva                          ^|
-echo     ^| 詳細       = info                           ^|
+echo    [メニュー]
+echo  --+-----------------------
+echo    ^| 終了       = exit
+echo    ^| 生成       = create
+echo    ^| Advanced   = adva
+echo    ^| Loop       = loop
+echo    ^| FastLoop   = floop
+echo    ^| 詳細       = info
 echo;
-pause
+echo;
+echo    [説明]
+echo  --+-----------------------
+echo    ^| Create は全自動生成です
+echo    ^|
+echo    ^| Advancedは任意な文字列の代入が可能です
+echo    ^|
+echo    ^| Loopは無限に生成するだけです
+echo;
+echo;
+echo    ^| 戻る場合は^'back^'
+
+
+:INFO-IMP
+:set INPUT=
+set /P INPUT="  [RNC]  >>  "
+
+if "%INPUT%"=="back" (
+    @REM Back to Home
+    cls
+    goto :START
+
+
+) else (
+    goto :INFO-IMP
+)
+
+
+
+
+:LOOP
+:LOOP-CORE
+echo;
+echo  ----------------------------
+echo        生成中...
+echo;
+echo  [進捗]
+
+setlocal enabledelayedexpansion
+
+set /a Total=50000
+set /a Rate=0
+set /a Display=10
+
+for /l %%i in (1,1,%Total%) do (
+    set /a Rate=%%i * 20
+    set /a Rate/=%Total%
+    if !Rate! geq !Display! (
+        set /p Bar=■< nul
+        set /a Display+=1
+    )
+)
+
+set /a ransub1=%random%*340/32767
+
+set /a ran1=%random%
+set /a ran2=%random%
+set /a ran3=%random%*1586/32767
+set /a ran4=%random%*%ransub1%/32767
+set /a ran5=%random%*3456/32767
+
+
+rem あえての括弧なし
+set /a ranend=%ran1%*%ran2%-%ran3%/%ran4%*%ran5%
+
+goto :LOOP-RESULT1
+
+:LOOP-RESULT1
+cls
+
+echo   ###################################
+echo   #                                 #
+echo   #        結果発表 - LoopMode      #
+echo   #                                 #
+echo   ###################################
+echo;
+echo;
+echo       [結果]
+echo    --+--------------------
+echo      ^|
+echo      ^|  %ranend%
+goto :LOOP
+
+
+
+:INFO-IMP
+:set INPUT=
+set /P INPUT="  [RNC]  >>  "
+
+if "%INPUT%"=="back" (
+    @REM Back to Home
+    cls
+    goto :START
+
+
+) else (
+    goto :INFO-IMP
+)
+
+
+
+
+:FLOOP
+:FLOOP-CORE
+echo;
+echo  ----------------------------
+echo        生成中...
+echo;
+echo  [進捗]
+
+setlocal enabledelayedexpansion
+
+set /a Total=5000
+set /a Rate=0
+set /a Display=1
+
+for /l %%i in (1,1,%Total%) do (
+    set /a Rate=%%i * 20
+    set /a Rate/=%Total%
+    if !Rate! geq !Display! (
+        set /p Bar=■< nul
+        set /a Display+=1
+    )
+)
+
+set /a ransub1=%random%*340/32767
+
+set /a ran1=%random%
+set /a ran2=%random%
+set /a ran3=%random%*1586/32767
+set /a ran4=%random%*%ransub1%/32767
+set /a ran5=%random%*3456/32767
+
+
+rem あえての括弧なし
+set /a ranend=%ran1%*%ran2%-%ran3%/%ran4%*%ran5%
+
+goto :FLOOP-RESULT1
+
+:FLOOP-RESULT1
+cls
+
+echo   ###################################
+echo   #                                 #
+echo   #        結果発表 - LoopMode      #
+echo   #                                 #
+echo   ###################################
+echo;
+echo;
+echo       [結果]
+echo    --+--------------------
+echo      ^|
+echo      ^|  %ranend%
+goto :FLOOP
