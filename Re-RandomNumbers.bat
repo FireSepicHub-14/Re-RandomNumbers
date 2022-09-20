@@ -22,7 +22,6 @@ echo;
 echo    [メニュー]
 echo   --+-----------------------
 echo     ^| 終了       = exit
-echo     ^| ヘルプ    = help
 echo     ^| 生成       = create
 echo     ^| Advanced   = adva
 echo     ^| 詳細       = info
@@ -38,12 +37,6 @@ set /P INPUT="  [RNC]  >>  "
 if "%INPUT%"=="exit" (
     @REM Exit
     goto :EXIT
-
-
-) else if "%INPUT%"=="help" (
-    @REM Help
-    goto :HELP
-    mode 120,38
 
 
 ) else if "%INPUT%"=="create" (
@@ -172,10 +165,9 @@ echo;
 echo       [メニュー]
 echo    --+-----------------------
 echo      ^| 終了       = exit
-echo      ^| メニュー   = menu
-echo      ^| 再生成      = create
+echo      ^| 詳細       = info
+echo      ^| 再生成     = create
 echo      ^| Advanced   = adva
-echo      ^| ヘルプ     = help
 echo;
 
 echo   ^|    メニューから選択してください       ^|
@@ -205,10 +197,9 @@ echo;
 echo       [メニュー]
 echo    --+-----------------------
 echo      ^| 終了       = exit
-echo      ^| メニュー   = menu
-echo      ^| 再生成      = create
+echo      ^| 詳細       = info
+echo      ^| 再生成     = create
 echo      ^| Advanced   = adva
-echo      ^| ヘルプ     = help
 echo;
 
 echo   ^|    メニューから選択してください       ^|
@@ -224,12 +215,6 @@ set /P INPUT="  [RNC]  >>  "
 if "%INPUT%"=="exit" (
     @REM Exit
     goto :EXIT
-
-
-) else if "%INPUT%"=="help" (
-    @REM Help
-    goto :HELP
-    mode 120,38
 
 
 ) else if "%INPUT%"=="create" (
@@ -265,12 +250,6 @@ set /P INPUT="  [RNC]  >>  "
 if "%INPUT%"=="exit" (
     @REM Exit
     goto :EXIT
-
-
-) else if "%INPUT%"=="help" (
-    @REM Help
-    goto :HELP
-    mode 120,38
 
 
 ) else if "%INPUT%"=="create" (
@@ -340,3 +319,32 @@ goto :SET-NU2
 :set IMPUT=
 set /p user-ran2="  [RNC] No2 >>  "
 goto :CORE2
+
+
+
+
+
+:INFO
+cls
+echo   ############################################
+echo   #                                          #
+echo   #        RandomNumberCreator - RNC - INFO  #
+echo   #                                          #
+echo   ############################################
+echo;
+echo;
+echo;
+echo;
+echo    ^| 作成期間:  9/15/2022 ～ 9/20/2022
+echo    ^| 作成時間:  推定 3 ～ 8時間  (実質二日間)
+echo    ^| 作成者:    Sou/Sephy
+echo;
+echo;
+echo    [メニュー]                                      [説明]
+echo   --+-----------------------                     --+-----------------------
+echo     ^| 終了       = exit                           ^|
+echo     ^| 生成       = create                         ^|
+echo     ^| Advanced   = adva                          ^|
+echo     ^| 詳細       = info                           ^|
+echo;
+pause
